@@ -1,17 +1,27 @@
 var formEl = document.querySelector("#task-form");
-
-// for this code blockm, 4 steps were done. 1. create a new task item 2. style the new task item 3. add the text 4. append this element to the task list.
-// going forward, these are the 4 steps that will be key to dynamically creating elements with the DOM
-var buttonEl = document.querySelector("#save-task");
 var tasksToDoEl = document.querySelector("#tasks-to-do");
 
 var createTaskHandler = function(event) {
     event.preventDefault();
 
+    // using square brackets in the selector to select an HTML element by one of it's attributes ie. ("input[name='task-name']")
+    var taskNameInput = document.querySelector("input[name='task-name']").value;
+    var taskTypeInput = document.querySelector("select[name='task-type']").value;
+  
+    // create list item
     var listItemEl = document.createElement("li");
     listItemEl.className = "task-item";
-    listItemEl.textContent = "This is a new task.";
+  
+    // create div to hold task info and add to list item
+    var taskInfoEl = document.createElement("div");
+    taskInfoEl.className = "task-info";
+  
+    // add HTML content to div
+    taskInfoEl.innerHTML = "<h3 class='task-name'>" + taskNameInput + "</h3><span class='task-type'>" + taskTypeInput + "</span>";
+    listItemEl.appendChild(taskInfoEl);
+  
+    // add entire list item to list
     tasksToDoEl.appendChild(listItemEl);
-}
-
-formEl.addEventListener("submit", createTaskHandler);
+  };
+  
+  formEl.addEventListener("submit", createTaskHandler);
