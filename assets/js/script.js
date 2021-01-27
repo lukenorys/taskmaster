@@ -41,3 +41,4 @@ var taskFormHandler = function(event) {
   }
   
   formEl.addEventListener("submit", taskFormHandler);
+  
